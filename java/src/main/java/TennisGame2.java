@@ -42,7 +42,7 @@ public class TennisGame2 implements TennisGame
             P2res = "Love";
 
             //duplicate
-            score = P1res + "-" + P2res;
+            score = printScores(p1, p2);
         }
         if (P2point > 0 && P1point==0)
         {
@@ -56,7 +56,7 @@ public class TennisGame2 implements TennisGame
             P1res = "Love";
 
             //duplicate
-            score = P1res + "-" + P2res;
+            score = printScores(p1, p2);
         }
         
         if (P1point>P2point && P1point < 4)
@@ -71,7 +71,7 @@ public class TennisGame2 implements TennisGame
                 P2res="Thirty";
 
             //duplicate
-            score = P1res + "-" + P2res;
+            score = printScores(p1,p2);
         }
         if (P2point>P1point && P2point < 4)
         {
@@ -85,7 +85,7 @@ public class TennisGame2 implements TennisGame
                 P1res="Thirty";
 
             //duplicate
-            score = P1res + "-" + P2res;
+            score = printScores(p1, p2);
         }
         
         if (P1point > P2point && P2point >= 3)
@@ -140,5 +140,9 @@ public class TennisGame2 implements TennisGame
             P1Score();
         else
             P2Score();
+    }
+
+    public String printScores(String p1, String p2){
+        return p1+'-'+p2
     }
 }
