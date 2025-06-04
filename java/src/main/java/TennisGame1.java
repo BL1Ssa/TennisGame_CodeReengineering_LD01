@@ -38,59 +38,46 @@ public class TennisGame1 implements TennisGame {
            player2.setM_score(player2.getM_score() + 1);
     }
 
-    public String getScore() {
-        String score = "";
-        int tempScore=0;
-        if (player1.getM_score() == player2.getM_score())
-        {
-            switch (player1.getM_score())
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
+   public String getScore() {
+        if (isDraw()) {
+            return drawScore();
+        } else if (isEndGame()) {
+            return advantageOrWin();
+        } else {
+            return regularScore();
         }
-        else if (player1.getM_score()>=4 || player2.getM_score()>=4)
-        {
-            int minusResult = player1.getM_score()-player2.getM_score();
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
+    }
+
+    private boolean isDraw() {
+        return player1.getM_score() == player2.getM_score();
+    }
+
+    private String drawScore() {
+        switch (player1.getM_score()) {
+            case 0: return "Love-All";
+            case 1: return "Fifteen-All";
+            case 2: return "Thirty-All";
+            default: return "Deuce";
         }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = player1.getM_score();
-                else { score+="-"; tempScore = player2.getM_score();}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
-        }
-        return score;
+    }
+
+    private boolean isEndGame() {
+        return player1.getM_score() >= 4 || player2.getM_score() >= 4;
+    }
+
+    private String advantageOrWin() {
+        int minusResult = player1.getM_score() - player2.getM_score();
+        if (minusResult == 1) return "Advantage player1";
+        else if (minusResult == -1) return "Advantage player2";
+        else if (minusResult >= 2) return "Win for player1";
+        else return "Win for player2";
+    }
+
+    
+    private String regularScore() {
+        int score1 = player1.getM_score();
+        int score2 = player2.getM_score();
+        String[] scores = {"Love", "Fifteen", "Thirty", "Forty"};
+        return scores[score1] + "-" + scores[score2];
     }
 }
