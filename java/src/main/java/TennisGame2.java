@@ -2,7 +2,6 @@ public class TennisGame2 implements TennisGame
 {
     private static class Player {
         public int point = 0;
-        public String res = "";
         public final String name;
         public Player(String name) {
             this.name = name;
@@ -17,80 +16,39 @@ public class TennisGame2 implements TennisGame
         this.player2 = new Player(player2Name);
     }
 
+    private String pointToScoreString(int point) {
+        switch(point) {
+            case 0: return "Love";
+            case 1: return "Fifteen";
+            case 2: return "Thirty";
+            case 3: return "Forty";
+            default: return "";
+        }
+    }
+
     public String getScore() {
         String score = "";
         Player P1 = player1;
         Player P2 = player2;
 
         if (P1.point == P2.point && P1.point < 4) {
-            if (P1.point == 0)
-                score = "Love";
-            if (P1.point == 1)
-                score = "Fifteen";
-            if (P1.point == 2)
-                score = "Thirty";
-            score += "-All";
-        }
-        if (P1.point == P2.point && P1.point >= 3)
+            score = pointToScoreString(P1.point) + "-All";
+        } else if (P1.point == P2.point && P1.point >= 3) {
             score = "Deuce";
-
-        if (P1.point > 0 && P2.point == 0) {
-            if (P1.point == 1)
-                P1.res = "Fifteen";
-            if (P1.point == 2)
-                P1.res = "Thirty";
-            if (P1.point == 3)
-                P1.res = "Forty";
-            P2.res = "Love";
-            score = P1.res + "-" + P2.res;
-        }
-        if (P2.point > 0 && P1.point == 0) {
-            if (P2.point == 1)
-                P2.res = "Fifteen";
-            if (P2.point == 2)
-                P2.res = "Thirty";
-            if (P2.point == 3)
-                P2.res = "Forty";
-            P1.res = "Love";
-            score = P1.res + "-" + P2.res;
-        }
-
-        if (P1.point > P2.point && P1.point < 4) {
-            if (P1.point == 2)
-                P1.res = "Thirty";
-            if (P1.point == 3)
-                P1.res = "Forty";
-            if (P2.point == 1)
-                P2.res = "Fifteen";
-            if (P2.point == 2)
-                P2.res = "Thirty";
-            score = P1.res + "-" + P2.res;
-        }
-        if (P2.point > P1.point && P2.point < 4) {
-            if (P2.point == 2)
-                P2.res = "Thirty";
-            if (P2.point == 3)
-                P2.res = "Forty";
-            if (P1.point == 1)
-                P1.res = "Fifteen";
-            if (P1.point == 2)
-                P1.res = "Thirty";
-            score = P1.res + "-" + P2.res;
-        }
-
-        if (P1.point > P2.point && P2.point >= 3) {
-            score = "Advantage " + P1.name;
-        }
-
-        if (P2.point > P1.point && P1.point >= 3) {
-            score = "Advantage " + P2.name;
-        }
-
-        if (P1.point >= 4 && P2.point >= 0 && (P1.point - P2.point) >= 2) {
+        } else if (P1.point >= 4 && (P1.point - P2.point) >= 2) {
             score = "Win for " + P1.name;
-        }
-        if (P2.point >= 4 && P1.point >= 0 && (P2.point - P1.point) >= 2) {
+        } else if (P2.point >= 4 && (P2.point - P1.point) >= 2) {
             score = "Win for " + P2.name;
+        } else if (P1.point >= 3 && P2.point >= 3) {
+            if (P1.point > P2.point) {
+                score = "Advantage " + P1.name;
+            } else {
+                score = "Advantage " + P2.name;
+            }
+        } else {
+            String p1Score = pointToScoreString(P1.point);
+            String p2Score = pointToScoreString(P2.point);
+            score = p1Score + "-" + p2Score;
         }
         return score;
     }
