@@ -1,6 +1,7 @@
 
 public class TennisGame2 implements TennisGame
 {
+    
     public int P1point = 0;
     public int P2point = 0;
     
@@ -39,6 +40,8 @@ public class TennisGame2 implements TennisGame
                 P1res = "Forty";
             
             P2res = "Love";
+
+            //duplicate
             score = P1res + "-" + P2res;
         }
         if (P2point > 0 && P1point==0)
@@ -51,6 +54,8 @@ public class TennisGame2 implements TennisGame
                 P2res = "Forty";
             
             P1res = "Love";
+
+            //duplicate
             score = P1res + "-" + P2res;
         }
         
@@ -64,6 +69,8 @@ public class TennisGame2 implements TennisGame
                 P2res="Fifteen";
             if (P2point==2)
                 P2res="Thirty";
+
+            //duplicate
             score = P1res + "-" + P2res;
         }
         if (P2point>P1point && P2point < 4)
@@ -76,6 +83,8 @@ public class TennisGame2 implements TennisGame
                 P1res="Fifteen";
             if (P1point==2)
                 P1res="Thirty";
+
+            //duplicate
             score = P1res + "-" + P2res;
         }
         
