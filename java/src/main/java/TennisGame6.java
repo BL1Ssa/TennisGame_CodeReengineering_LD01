@@ -24,7 +24,6 @@ public class TennisGame6 implements TennisGame {
 
         if (player1Score == player2Score)
         {
-            // tie score
             String tieScore;
             switch (player1Score)
             {
@@ -46,7 +45,6 @@ public class TennisGame6 implements TennisGame {
         }
         else if (player1Score >= 4 || player2Score >= 4)
         {
-            // end-game score
             String endGameScore;
 
             if (player1Score - player2Score == 1) {
@@ -63,7 +61,6 @@ public class TennisGame6 implements TennisGame {
         }
         else
         {
-            // regular score
             String regularScore;
 
             String score1 =  switch (player1Score)
