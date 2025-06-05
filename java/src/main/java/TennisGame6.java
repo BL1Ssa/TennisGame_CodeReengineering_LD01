@@ -24,66 +24,76 @@ public class TennisGame6 implements TennisGame {
 
         if (player1Score == player2Score)
         {
-            String tieScore;
-            switch (player1Score)
-            {
-                case 0:
-                    tieScore = "Love-All";
-                    break;
-                case 1:
-                    tieScore = "Fifteen-All";
-                    break;
-                case 2:
-                    tieScore = "Thirty-All";
-                    break;
-                default:
-                    tieScore = "Deuce";
-                    break;
-            }
-
-            result = tieScore;
+        	result  = tieScore();
         }
         else if (player1Score >= 4 || player2Score >= 4)
         {
-            String endGameScore;
-
-            if (player1Score - player2Score == 1) {
-                endGameScore = "Advantage " + player1Name;
-            } else if (player1Score - player2Score == -1) {
-                endGameScore = "Advantage " + player2Name;
-            } else if (player1Score - player2Score >= 2) {
-                endGameScore = "Win for " + player1Name;
-            } else {
-                endGameScore = "Win for " + player2Name;
-            }
-
-            result = endGameScore;
+        	result = endGameScore();
         }
         else
         {
-            String regularScore;
-
-            String score1 =  switch (player1Score)
-            {
-                case 0 -> "Love";
-                case 1 -> "Fifteen";
-                case 2 -> "Thirty";
-                default -> "Forty";
-            };
-
-            var score2 =  switch (player2Score)
-            {
-                case 0 -> "Love";
-                case 1 -> "Fifteen";
-                case 2 -> "Thirty";
-                default -> "Forty";
-            };
-
-            regularScore = score1 + "-" + score2;
-
-            result = regularScore;
+        	result = regularScore();
+        }               
+        return result;
+    }
+    public String tieScore() {
+        String tieScore;
+        switch (player1Score)
+        {
+            case 0:
+                tieScore = "Love-All";
+                break;
+            case 1:
+                tieScore = "Fifteen-All";
+                break;
+            case 2:
+                tieScore = "Thirty-All";
+                break;
+            default:
+                tieScore = "Deuce";
+                break;
         }
 
-        return result;
+        return tieScore;
+    }
+    
+    public String endGameScore() {
+        String endGameScore;
+
+        if (player1Score - player2Score == 1) {
+            endGameScore = "Advantage " + player1Name;
+        } else if (player1Score - player2Score == -1) {
+            endGameScore = "Advantage " + player2Name;
+        } else if (player1Score - player2Score >= 2) {
+            endGameScore = "Win for " + player1Name;
+        } else {
+            endGameScore = "Win for " + player2Name;
+        }
+
+        return endGameScore;
+    }
+    
+    public String regularScore() {
+        String regularScore;
+
+        String score1 =  switch (player1Score)
+        {
+            case 0 -> "Love";
+            case 1 -> "Fifteen";
+            case 2 -> "Thirty";
+            default -> "Forty";
+        };
+
+        var score2 =  switch (player2Score)
+        {
+            case 0 -> "Love";
+            case 1 -> "Fifteen";
+            case 2 -> "Thirty";
+            default -> "Forty";
+        };
+
+        regularScore = score1 + "-" + score2;
+
+        return regularScore;
     }
 }
