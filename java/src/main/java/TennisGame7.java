@@ -1,6 +1,8 @@
 public class TennisGame7 implements TennisGame {
+	
     private final String player1Name;
     private final String player2Name;
+    
     private int player1Score;
     private int player2Score;
 
@@ -57,24 +59,27 @@ public class TennisGame7 implements TennisGame {
         else
         {
             // regular score
-            result +=  switch (player1Score)
-            {
-                case 0 -> "Love";
-                case 1 -> "Fifteen";
-                case 2 -> "Thirty";
-                default -> "Forty";
-            };
+            result += scoringPrint(player1Score);
             result += "-";
-            result +=  switch (player2Score)
-            {
-                case 0 -> "Love";
-                case 1 -> "Fifteen";
-                case 2 -> "Thirty";
-                default -> "Forty";
-            };
+            result += scoringPrint(player2Score);
 
         }
 
         return result + ", enjoy your game!";
+    }
+    
+    public String scoringPrint( int playerScore) {
+    	
+    	String result = "" ;
+    		if(playerScore == 0) {
+    			result += "Love";
+    		}
+    		if(playerScore == 1) {
+    			result += "Fifteen";
+    		}
+    		if(playerScore == 2) {
+    			result += "Thirty";
+    		}
+    	return result += "Forty";
     }
 }
